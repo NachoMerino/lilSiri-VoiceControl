@@ -1,0 +1,43 @@
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>lilSiri</title>
+  <link href="./assets/css/bootstrap.min.css" rel="stylesheet">
+  <link href="./assets/css/main.css" rel="stylesheet">
+  <script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCsK_poRxIKkQziTVC-qdKe6N5vCmFouz8"></script>
+  <script src="./assets/js/modules/webcam.min.js"></script>
+</head>
+<audio id="myAudio">
+  <source src="./assets/music/party-song.mp3" type="audio/mpeg">Your browser does not support the audio element.
+</audio>
+
+<body>
+  <main>
+    <div class="picture-container">
+      <div class="cat"></div>
+    </div>
+    <div class="text-box">
+    </div>
+    <div class="inputBox">
+      <button id="startRecognition" type="button" class="btn btn-success"><i class="fas fa-microphone"></i></button>
+      <input id="txtArea" value="Hello! How may I help you?"></input>
+      <button id="stopRecognition" type="submit" class="btn btn-danger"><i class="fas fa-microphone"></i></button>
+    </div>
+    <button id="pause" onclick="pauseAudio()" type="button"></button>
+  </main>
+  <footer class="footer-container">
+    <p>
+      Lil' Siri
+    </P>
+  </footer>
+  <script src="./assets/js/modules/animations.js"></script>
+  <script src="./assets/js/additional/jquery.min.js"></script>
+  <script src="./assets/js/additional/bootstrap.min.js"></script>
+  <script type="module" src="./assets/js/script.js"></script>
+</body>
+
+</html>
