@@ -39,40 +39,64 @@ $(() => {
     $('#txtArea').val(txtRec);
 
     // checking our text and decide what to do with keywords
-    if (txtRec.match('weather')) {
+    if (txtRec.includes('weather')) {
       let city = txtRec.split(' ');
       city = city[city.length - 1];
       fetchWeather(city);
-    } else if (txtRec.match('name')) {
+    }
+    else if (txtRec.includes('name')) {
       name = txtRec.split(' ');
       name = name[name.length - 1];
       speech(`Hello, ${name}, how can i help you?`);
-    } else if (txtRec.match('joke')) {
+    }
+    else if (txtRec.includes('joke')) {
       let rndNum = Math.floor(Math.random() * jokes.length);
       speech(`${jokes[rndNum].joke}`);
-    } else if (txtRec.match('where')) {
+    }
+    else if (txtRec.includes('where am I')) {
+      speech("It seems to be that you are here");
       $('.text-box').empty();
       // data from our pc that say where we are conected
       navigator.geolocation.getCurrentPosition(position => {
         // start the google maps API with the lat and long provide by 'getCurrentPosition'
         initMap(position.coords.latitude, position.coords.longitude, 17);
       });
-    } else if (txtRec.match('selfie')) {
+    }
+    else if (txtRec.includes('where are you')) {
+      speech("It seems to be that i am here");
+      $('.text-box').empty();
+      // data from our pc that say where we are conected
+      navigator.geolocation.getCurrentPosition(position => {
+        // start the google maps API with the lat and long provide by 'getCurrentPosition'
+        initMap(position.coords.latitude, position.coords.longitude, 17);
+      });
+    }
+    else if (txtRec.includes('selfie')) {
       $('.text-box').empty().append('<div id="my_camera"></div>');
       Webcam.attach('#my_camera');
-    } else if (txtRec.match('click')) {
+    }
+    else if (txtRec.includes('click')) {
       $('#my_camera').empty();
       selfie();
-    } else if (txtRec.match('party')) {
+    }
+    else if (txtRec.includes('party')) {
       speech('Lets party!');
       $('.text-box, .inputBox').hide();
       makeCatParty();
       audio.play();
-    } else if (txtRec.match('stop')) {
+    }
+    else if (txtRec.includes('stop')) {
       stopParty();
-    } else if (txtRec.match('thank')) {
-      speech(`Youre welcome ${name}`);
-    } else {
+    }
+    else if (txtRec.includes('thank you') || txtRec.includes('thanks')) {
+      if (name === undefined) {
+        speech(`You're welcome,   but you forgot to tell me your name`);
+      } else {
+        speech(`Youre welcome ${name}`);
+      }
+
+    }
+    else {
       speech('Can you repeat please?');
     }
   };
