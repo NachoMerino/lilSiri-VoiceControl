@@ -23,6 +23,8 @@ $(() => {
   // what our cat will say
   speech('Hi, im a little cat');
   speech('whats your name?');
+  // cat stops when pas. 3,2sec
+  setInterval(() => { makeCatStop(); }, 3200);
   // Speech recognition
   try {
     var recognition = new webkitSpeechRecognition();
@@ -48,17 +50,14 @@ $(() => {
       let city = txtRec.split(' ');
       city = city[city.length - 1];
       fetchWeather(city);
-    }
-    else if (txtRec.includes('name')) {
+    } else if (txtRec.includes('name')) {
       name = txtRec.split(' ');
       name = name[name.length - 1];
       speech(`Hello, ${name}, how can i help you?`);
-    }
-    else if (txtRec.includes('joke')) {
+    } else if (txtRec.includes('joke')) {
       let rndNum = Math.floor(Math.random() * jokes.length);
       speech(`${jokes[rndNum].joke}`);
-    }
-    else if (txtRec.includes('where am I')) {
+    } else if (txtRec.includes('where am I')) {
       speech("It seems to be that you are here");
       $('.text-box').empty();
       // data from our pc that say where we are conected
@@ -66,8 +65,7 @@ $(() => {
         // start the google maps API with the lat and long provide by 'getCurrentPosition'
         initMap(position.coords.latitude, position.coords.longitude, 17);
       });
-    }
-    else if (txtRec.includes('where are you')) {
+    } else if (txtRec.includes('where are you')) {
       speech("It seems to be that i am here");
       $('.text-box').empty();
       // data from our pc that say where we are conected
@@ -75,35 +73,29 @@ $(() => {
         // start the google maps API with the lat and long provide by 'getCurrentPosition'
         initMap(position.coords.latitude, position.coords.longitude, 17);
       });
-    }
-    else if (txtRec.includes('selfie')) {
+    } else if (txtRec.includes('selfie')) {
       $('.text-box').empty().append('<div id="my_camera"></div>');
       Webcam.attach('#my_camera');
-    }
-    else if (txtRec.includes('click')) {
+    } else if (txtRec.includes('click')) {
       $('#my_camera').empty();
       selfie();
-    }
-    else if (txtRec.includes('party')) {
+    } else if (txtRec.includes('party')) {
       speech('Lets party!');
       let button = document.getElementById('pause');
       button.style.display = 'block';
       $('.text-box, .inputBox').hide();
       makeCatParty();
       audio.play();
-    }
-    else if (txtRec.includes('stop')) {
+    } else if (txtRec.includes('stop')) {
       stopParty();
-    }
-    else if (txtRec.includes('thank you') || txtRec.includes('thanks')) {
+    } else if (txtRec.includes('thank you') || txtRec.includes('thanks')) {
       if (name === undefined) {
         speech(`You're welcome,   but you forgot to tell me your name`);
       } else {
         speech(`Youre welcome ${name}`);
       }
 
-    }
-    else {
+    } else {
       speech('Can you repeat please?');
     }
   };

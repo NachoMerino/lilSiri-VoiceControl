@@ -9,6 +9,9 @@
    },
    {
      "joke": "Could you please call me a taxi?        Alright,       you are a    taxi",
+   },
+   {
+    "joke": "Can a kangaroo jump higher than a house?      Of course, a house doesn’t jump at all."
    }
  ]
 

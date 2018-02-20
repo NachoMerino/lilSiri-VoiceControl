@@ -9,14 +9,14 @@ export default function speech(text) {
   // Use the selected voice
   utterThis.voice = voice;
   // Change the pitch and pace
-  utterThis.pitch = 1.8;
-  utterThis.rate = 0.8;
+  utterThis.pitch = 1.4;
+  utterThis.rate = 1;
   // the cat speak 
   synth.speak(utterThis);
   // the cat moves while speak
   makeCatSpeak();
   // triger this when the cat stop speaking
-  utterThis.onend = (event) => {
+  utterThis.onend = () => {
     makeCatStop();
   }
   // shows what the cat its saying in our text-box
