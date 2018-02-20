@@ -12,7 +12,12 @@ $(() => {
     audio.pause();
     speech();
     speech();
-    speech(`I was having so much fun! ${name}`);
+    if (name === undefined) {
+      speech("I was having so much fun! ");
+    } else {
+      speech(`I was having so much fun! ${name}`);
+    }
+
     $('.text-box, .inputBox').show();
   }
   // what our cat will say
@@ -81,6 +86,8 @@ $(() => {
     }
     else if (txtRec.includes('party')) {
       speech('Lets party!');
+      let button = document.getElementById('pause');
+      button.style.display = 'block';
       $('.text-box, .inputBox').hide();
       makeCatParty();
       audio.play();
