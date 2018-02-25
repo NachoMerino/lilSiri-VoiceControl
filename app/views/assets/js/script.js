@@ -1,12 +1,21 @@
 import speech from './modules/voiceSynthesizer.js';
 import jokes from './modules/jokes.js';
-import selfie from './modules/takeSelfie.js';
+import selfie from './modules/Skills/takeSelfie.js';
 import initMap from './modules/googleMaps.js';
-import fetchWeather from './modules/weatherAPI.js';
+import fetchWeather from './modules/API/weatherAPI.js';
+import currentExchange from './modules/Skills/CurrentExchangeAbility.js'
 
 $(() => {
   let name;
   const audio = document.getElementById('myAudio');
+
+
+  // what our cat will say
+  speech('Hi, im a little cat');
+  speech('whats your name?');
+  // cat stops when pas. 3,2sec
+  setInterval(() => { makeCatStop(); }, 3200);
+
   let stopParty = () => {
     makeCatStopParty();
     audio.pause();
@@ -20,20 +29,15 @@ $(() => {
 
     $('.text-box, .inputBox').show();
   }
-  // what our cat will say
-  speech('Hi, im a little cat');
-  speech('whats your name?');
-  // cat stops when pas. 3,2sec
-  setInterval(() => { makeCatStop(); }, 3200);
   // Speech recognition
   try {
     var recognition = new webkitSpeechRecognition();
   } catch (e) {
     var recognition = Object;
   }
-  // languaje we going to use
+  // language we going to use
   recognition.lang = 'en-US';
-  // mic on untill we decide to stop it
+  // mic on until we decide to stop it
   recognition.continuous = true;
   // dont show the text while we speaking, just wen we stop the mic
   recognition.interimResults = false;
@@ -46,7 +50,7 @@ $(() => {
     $('#txtArea').val(txtRec);
 
     // checking our text and decide what to do with keywords
-    if (txtRec.includes('weather')) {
+    if (txtRec.includes('weather in')) {
       let city = txtRec.split(' ');
       city = city[city.length - 1];
       fetchWeather(city);
@@ -57,10 +61,12 @@ $(() => {
     } else if (txtRec.includes('joke')) {
       let rndNum = Math.floor(Math.random() * jokes.length);
       speech(`${jokes[rndNum].joke}`);
+    } else if (txtRec.includes('how much is')) {
+      currentExchange(txtRec);
     } else if (txtRec.includes('where am I')) {
       speech("It seems to be that you are here");
       $('.text-box').empty();
-      // data from our pc that say where we are conected
+      // data from our pc that say where we are connected
       navigator.geolocation.getCurrentPosition(position => {
         // start the google maps API with the lat and long provide by 'getCurrentPosition'
         initMap(position.coords.latitude, position.coords.longitude, 17);
@@ -68,7 +74,7 @@ $(() => {
     } else if (txtRec.includes('where are you')) {
       speech("It seems to be that i am here");
       $('.text-box').empty();
-      // data from our pc that say where we are conected
+      // data from our pc that say where we are connected
       navigator.geolocation.getCurrentPosition(position => {
         // start the google maps API with the lat and long provide by 'getCurrentPosition'
         initMap(position.coords.latitude, position.coords.longitude, 17);
@@ -92,7 +98,7 @@ $(() => {
       if (name === undefined) {
         speech(`You're welcome,   but you forgot to tell me your name`);
       } else {
-        speech(`Youre welcome ${name}`);
+        speech(`You're welcome ${name}`);
       }
 
     } else {
