@@ -9,7 +9,6 @@ $(() => {
   let name;
   const audio = document.getElementById('myAudio');
 
-
   // what our cat will say
   speech('Hi, im a little cat');
   speech('whats your name?');
@@ -100,7 +99,6 @@ $(() => {
       } else {
         speech(`You're welcome ${name}`);
       }
-
     } else {
       speech('Can you repeat please?');
     }
