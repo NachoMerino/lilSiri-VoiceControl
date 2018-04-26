@@ -5,6 +5,8 @@
 ##### 3 - Inside the folder with the repository execute '$ npm install'
 ##### 4 - execute the program with '$ nodemon main.js'
 ##### 5 - In your browser type: 'localhost:3000'
+##### 6 - Enjoy
+
 
 ## What can lilSiri do?
 
